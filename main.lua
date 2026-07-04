@@ -18,7 +18,7 @@ end
 function love.update(dt)
     World:update(dt)
     bird:update(dt)
-    cloud.updateCloud(dt)
+    cloud.updateCloud()
 
     if love.keyboard.isDown("r") or love.keyboard.isDown("escape") then
         -- TODO Return to main menu

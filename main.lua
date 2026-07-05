@@ -7,7 +7,7 @@ if arg[2] == "debug" then
 end
 
 function love.load()
-    World = love.physics.newWorld(0, 1000, false)
+    World = love.physics.newWorld(0, 2000, false)
     bird:init(World, 25, love.graphics.getHeight() / 2)
 
     Width = love.graphics.getWidth()

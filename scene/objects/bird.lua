@@ -19,6 +19,7 @@ function bird:update(dt)
     local spaceDown = love.keyboard.isDown("space")
 
     if spaceDown and not self.wasSpaceDown then
+        self.body:setLinearVelocity(0, 0)
         self.body:applyLinearImpulse(0, -100)
     end
 

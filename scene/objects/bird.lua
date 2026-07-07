@@ -1,7 +1,7 @@
 local bird = {}
 
 function bird:init(world, x, y)
-    self.image = love.graphics.newImage("assets/sprites/bird.png")
+    self.sprite = love.graphics.newImage("assets/sprites/birdsprite.png")
     self.x = x or 25
     self.y = y or love.graphics.getHeight() / 2
 
@@ -11,6 +11,13 @@ function bird:init(world, x, y)
 
     self.body:setFixedRotation(true)
     self.body:setGravityScale(1)
+
+    self.quads = {
+        love.graphics.newQuad(0, 0, 16, 16, self.sprite:getWidth(), self.sprite:getHeight()),
+        love.graphics.newQuad(16, 0, 16, 16, self.sprite:getWidth(), self.sprite:getHeight())
+    }
+
+    self.frame = 1
     self.wasSpaceDown = false
 end
 
@@ -19,6 +26,7 @@ function bird:update(dt)
     local spaceDown = love.keyboard.isDown("space")
 
     if spaceDown and not self.wasSpaceDown then
+        self.frame = self.frame == 1 and 2 or 1
         self.body:setLinearVelocity(0, 0)
         self.body:applyLinearImpulse(0, -100)
     end
@@ -37,7 +45,7 @@ end
 
 function bird:draw()
     local x, y = self.body:getPosition()
-    love.graphics.draw(self.image, x, y)
+    love.graphics.draw(self.sprite, self.quads[self.frame], x, y, 0, 1, 1, 8, 8)
 end
 
 return bird

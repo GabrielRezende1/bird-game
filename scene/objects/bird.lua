@@ -21,6 +21,9 @@ function bird:init(world, x, y)
     self.flapTimer = 0
     self.flapDuration = 0.15
     self.wasSpaceDown = false
+    self.maxTilt = math.rad(35)
+    self.tilt = 0
+    self.tiltSpeed = 6
 end
 
 function bird:update(dt)
@@ -43,6 +46,17 @@ function bird:update(dt)
 
     self.wasSpaceDown = spaceDown
 
+    local _, vy = self.body:getLinearVelocity()
+    local targetTilt = 0
+
+    if vy < -20 then
+        targetTilt = -self.maxTilt
+    elseif vy > 20 then
+        targetTilt = self.maxTilt
+    end
+
+    self.tilt = self.tilt + (targetTilt - self.tilt) * math.min(dt * self.tiltSpeed, 1)
+
     local x, y = self.body:getPosition()
     if y + 16 > height then
         self.body:setPosition(x, height / 2)
@@ -55,7 +69,7 @@ end
 
 function bird:draw()
     local x, y = self.body:getPosition()
-    love.graphics.draw(self.sprite, self.quads[self.frame], x, y, 0, 1, 1, 8, 8)
+    love.graphics.draw(self.sprite, self.quads[self.frame], x, y, self.tilt, 1, 1, 8, 8)
 end
 
 return bird

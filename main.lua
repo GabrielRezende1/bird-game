@@ -8,7 +8,7 @@ end
 
 function love.load()
     World = love.physics.newWorld(0, 2000, false)
-    bird:init(World, 25, love.graphics.getHeight() / 2)
+    bird:init(World)
 
     Width = love.graphics.getWidth()
     Height = love.graphics.getHeight()

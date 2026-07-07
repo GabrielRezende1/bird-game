@@ -1,6 +1,6 @@
 local cloud = require('scene.rooms.cloud')
 local bird = require('scene.objects.bird')
-require('scene.objects.pipe')
+local pipe = require('scene.objects.pipe')
 
 if arg[2] == "debug" then
     require("lldebugger").start()
@@ -9,6 +9,7 @@ end
 function love.load()
     World = love.physics.newWorld(0, 2000, false)
     bird:init(World)
+    pipe:init(World)
 
     Width = love.graphics.getWidth()
     Height = love.graphics.getHeight()
@@ -18,6 +19,7 @@ end
 function love.update(dt)
     World:update(dt)
     bird:update(dt)
+    pipe:update(dt)
     cloud.updateCloud()
 
     if love.keyboard.isDown("r") or love.keyboard.isDown("escape") then
@@ -34,4 +36,5 @@ function love.draw()
     love.graphics.print(Score, Width / 2, Height / 10)
 
     bird:draw()
+    pipe:draw()
 end

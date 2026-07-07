@@ -18,6 +18,8 @@ function bird:init(world, x, y)
     }
 
     self.frame = 1
+    self.flapTimer = 0
+    self.flapDuration = 0.15
     self.wasSpaceDown = false
 end
 
@@ -26,9 +28,17 @@ function bird:update(dt)
     local spaceDown = love.keyboard.isDown("space")
 
     if spaceDown and not self.wasSpaceDown then
-        self.frame = self.frame == 1 and 2 or 1
+        self.frame = 2
+        self.flapTimer = self.flapDuration
         self.body:setLinearVelocity(0, 0)
         self.body:applyLinearImpulse(0, -100)
+    end
+
+    if self.flapTimer > 0 then
+        self.flapTimer = self.flapTimer - dt
+        if self.flapTimer <= 0 then
+            self.frame = 1
+        end
     end
 
     self.wasSpaceDown = spaceDown

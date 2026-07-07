@@ -6,7 +6,7 @@ function bird:init(world, x, y)
     self.y = y or love.graphics.getHeight() / 2
 
     self.body = love.physics.newBody(world, self.x, self.y, "dynamic")
-    self.shape = love.physics.newRectangleShape(17, 12)
+    self.shape = love.physics.newRectangleShape(16, 16)
     self.fixture = love.physics.newFixture(self.body, self.shape, 1)
 
     self.body:setFixedRotation(true)

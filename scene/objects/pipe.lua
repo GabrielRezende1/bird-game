@@ -44,6 +44,7 @@ function pipe:_spawnPair()
         gapHeight = self.gapHeight,
         topBody = topBody,
         bottomBody = bottomBody,
+        scored = false,
     })
 end
 
@@ -57,6 +58,12 @@ function pipe:update(dt)
     for i = #self.pairs, 1, -1 do
         local pair = self.pairs[i]
         local x = pair.topBody:getX()
+
+        if not pair.scored and x + self.pipeWidth < 250 then
+            pair.scored = true
+            Score = Score + 1
+        end
+
         if x + self.pipeWidth < -20 then
             pair.topBody:destroy()
             pair.bottomBody:destroy()

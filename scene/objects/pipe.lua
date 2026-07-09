@@ -20,7 +20,7 @@ function pipe:_createColumn(x, y, height)
     body:setGravityScale(0)
     body:setLinearVelocity(-self.speed, 0)
 
-    local shape = love.physics.newRectangleShape(16, height / 2)
+    local shape = love.physics.newRectangleShape(16, height)
     love.physics.newFixture(body, shape, 1)
 
     return body
@@ -29,7 +29,7 @@ end
 function pipe:_spawnPair()
     local x = love.graphics.getWidth() + self.pipeWidth
     local minGapY = 64
-    local maxGapY = love.graphics.getHeight() - self.gapHeight - 64
+    local maxGapY = love.graphics.getHeight() - self.gapHeight - minGapY
     local gapY = math.random(minGapY / 16, maxGapY / 16) * 16
 
     local topHeight = gapY
@@ -70,7 +70,7 @@ function pipe:draw()
         local x, _ = pair.topBody:getPosition()
         local topHeight = pair.gapY
         local topHeadY = topHeight - 8
-        local bottomHeadY = pair.gapY + pair.gapHeight + 8
+        local bottomHeadY = pair.gapY + pair.gapHeight
         local screenH = love.graphics.getHeight()
 
         for y = 8, topHeight - 24, 16 do

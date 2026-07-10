@@ -6,13 +6,13 @@ if arg[2] == "debug" then
     require("lldebugger").start()
 end
 
-function love.load()
-    World = love.physics.newWorld(0, 2000, false)
-    bird:init(World)
-    pipe:init(World)
+local world = love.physics.newWorld(0, 2000, false)
 
-    Width = love.graphics.getWidth()
-    Height = love.graphics.getHeight()
+function love.load()
+    world = love.physics.newWorld(0, 2000, false)
+    bird:init(world)
+    pipe:init(world)
+
     Score = 0
 end
 
@@ -34,7 +34,7 @@ local function bodyHasFixture(body, targetFixture)
 end
 
 local function checkBirdPipeCollision()
-    for _, contact in ipairs(World:getContacts()) do
+    for _, contact in ipairs(world:getContacts()) do
         local fixtureA, fixtureB = contact:getFixtures()
         if fixtureA and fixtureB then
             local isBirdContact = (fixtureA == bird.fixture or fixtureB == bird.fixture)
@@ -56,7 +56,7 @@ local function checkBirdPipeCollision()
 end
 
 function love.update(dt)
-    World:update(dt)
+    world:update(dt)
     bird:update(dt)
     pipe:update(dt)
     cloud.updateCloud()
@@ -67,12 +67,15 @@ function love.update(dt)
 end
 
 function love.draw()
+    local width = love.graphics.getWidth()
+    local height = love.graphics.getHeight()
+
     love.graphics.setBackgroundColor(0.5, 0.5, 1)
     love.graphics.draw(cloud.cloud1, cloud.cloud1X, cloud.cloud1Y)
     love.graphics.draw(cloud.cloud2, cloud.cloud2X, cloud.cloud2Y)
 
     love.graphics.setNewFont(48)
-    love.graphics.print(Score, Width / 2, Height / 10)
+    love.graphics.print(Score, width / 2, height / 10)
 
     bird:draw()
     pipe:draw()

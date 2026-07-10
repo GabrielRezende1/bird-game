@@ -61,9 +61,11 @@ function bird:update(dt)
     if y + 16 > height then
         self.body:setPosition(x, height / 2)
         self.body:setLinearVelocity(0, 0)
+        love.load()
     elseif y - 16 < 0 then
         self.body:setPosition(x, height / 2)
         self.body:setLinearVelocity(0, 0)
+        love.load()
     end
 end
 

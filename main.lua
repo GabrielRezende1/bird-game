@@ -16,14 +16,53 @@ function love.load()
     Score = 0
 end
 
+local function bodyHasFixture(body, targetFixture)
+    local fixtures = body:getFixtures()
+    if fixtures and type(fixtures) ~= "table" then
+        fixtures = {fixtures}
+    end
+
+    if fixtures then
+        for _, fixture in ipairs(fixtures) do
+            if fixture == targetFixture then
+                return true
+            end
+        end
+    end
+
+    return false
+end
+
+local function checkBirdPipeCollision()
+    for _, contact in ipairs(World:getContacts()) do
+        local fixtureA, fixtureB = contact:getFixtures()
+        if fixtureA and fixtureB then
+            local isBirdContact = (fixtureA == bird.fixture or fixtureB == bird.fixture)
+            if isBirdContact then
+                for _, pair in ipairs(pipe.pairs) do
+                    if bodyHasFixture(pair.topBody, fixtureA) or bodyHasFixture(pair.topBody, fixtureB) then
+                        return true
+                    end
+
+                    if bodyHasFixture(pair.bottomBody, fixtureA) or bodyHasFixture(pair.bottomBody, fixtureB) then
+                        return true
+                    end
+                end
+            end
+        end
+    end
+
+    return false
+end
+
 function love.update(dt)
     World:update(dt)
     bird:update(dt)
     pipe:update(dt)
     cloud.updateCloud()
 
-    if love.keyboard.isDown("r") or love.keyboard.isDown("escape") then
-        -- TODO Return to main menu
+    if checkBirdPipeCollision() then
+        love.load()
     end
 end
 

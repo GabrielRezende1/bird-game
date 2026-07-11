@@ -2,6 +2,7 @@ local storage = require('game.storage')
 local cloud = require('scene.rooms.cloud')
 local bird = require('scene.objects.bird')
 local pipe = require('scene.objects.pipe')
+local collision = require('game.collision')
 
 if arg[2] == "debug" then
     require("lldebugger").start()
@@ -15,47 +16,7 @@ function love.load()
     world = love.physics.newWorld(0, 2000, false)
     bird:init(world)
     pipe:init(world)
-
     Score = 0
-end
-
-local function bodyHasFixture(body, targetFixture)
-    local fixtures = body:getFixtures()
-    if fixtures and type(fixtures) ~= "table" then
-        fixtures = {fixtures}
-    end
-
-    if fixtures then
-        for _, fixture in ipairs(fixtures) do
-            if fixture == targetFixture then
-                return true
-            end
-        end
-    end
-
-    return false
-end
-
-local function checkBirdPipeCollision()
-    for _, contact in ipairs(world:getContacts()) do
-        local fixtureA, fixtureB = contact:getFixtures()
-        if fixtureA and fixtureB then
-            local isBirdContact = (fixtureA == bird.fixture or fixtureB == bird.fixture)
-            if isBirdContact then
-                for _, pair in ipairs(pipe.pairs) do
-                    if bodyHasFixture(pair.topBody, fixtureA) or bodyHasFixture(pair.topBody, fixtureB) then
-                        return true
-                    end
-
-                    if bodyHasFixture(pair.bottomBody, fixtureA) or bodyHasFixture(pair.bottomBody, fixtureB) then
-                        return true
-                    end
-                end
-            end
-        end
-    end
-
-    return false
 end
 
 function love.update(dt)
@@ -64,7 +25,7 @@ function love.update(dt)
     pipe:update(dt)
     cloud.updateCloud()
 
-    if checkBirdPipeCollision() then
+    if collision:checkBirdPipeCollision(world, bird, pipe) then
         storage:saveScore(Score)
         love.load()
     end

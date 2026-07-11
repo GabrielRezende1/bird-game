@@ -2,7 +2,7 @@ local pipe = {}
 
 function pipe:init(world)
     self.world = world
-    self.sprite = love.graphics.newImage("assets/sprites/pipesprite.png")
+    self.sprite = love.graphics.newImage("assets/sprites/pipe.png")
     self.bodyQuad = love.graphics.newQuad(0, 0, 16, 16, self.sprite:getWidth(), self.sprite:getHeight())
     self.headQuad = love.graphics.newQuad(0, 16, 16, 16, self.sprite:getWidth(), self.sprite:getHeight())
 
@@ -58,8 +58,8 @@ function pipe:update(dt)
     for i = #self.pairs, 1, -1 do
         local pair = self.pairs[i]
         local x = pair.topBody:getX()
-
-        if not pair.scored and x + self.pipeWidth < 250 then
+        -- Bird X position is being hard coded
+        if not pair.scored and x + self.pipeWidth < 25 then
             pair.scored = true
             Score = Score + 1
         end

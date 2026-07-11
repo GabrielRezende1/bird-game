@@ -1,7 +1,7 @@
 local bird = {}
 
 function bird:init(world, x, y)
-    self.sprite = love.graphics.newImage("assets/sprites/birdsprite.png")
+    self.sprite = love.graphics.newImage("assets/sprites/bird.png")
     self.x = x or 25
     self.y = y or love.graphics.getHeight() / 2
 

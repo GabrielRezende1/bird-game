@@ -1,3 +1,4 @@
+local storage = require('game.storage')
 local cloud = require('scene.rooms.cloud')
 local bird = require('scene.objects.bird')
 local pipe = require('scene.objects.pipe')
@@ -7,8 +8,10 @@ if arg[2] == "debug" then
 end
 
 local world = love.physics.newWorld(0, 2000, false)
+local highscore = 0
 
 function love.load()
+    highscore = storage:loadScore()
     world = love.physics.newWorld(0, 2000, false)
     bird:init(world)
     pipe:init(world)
@@ -62,6 +65,7 @@ function love.update(dt)
     cloud.updateCloud()
 
     if checkBirdPipeCollision() then
+        storage:saveScore(Score)
         love.load()
     end
 end
@@ -76,6 +80,8 @@ function love.draw()
 
     love.graphics.setNewFont(48)
     love.graphics.print(Score, width / 2, height / 10)
+    love.graphics.setNewFont(24)
+    love.graphics.print("Best: " .. highscore, 0, 0)
 
     bird:draw()
     pipe:draw()

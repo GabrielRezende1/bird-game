@@ -45,10 +45,11 @@ function love.draw()
 
     if menu.state == "menu" then
         menu:draw()
+        score:draw(menu.state)
         return
     end
 
-    score:draw()
+    score:draw(menu.state)
     cloud:draw()
     bird:draw()
     pipe:draw()

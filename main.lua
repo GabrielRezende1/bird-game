@@ -49,8 +49,8 @@ function love.draw()
         return
     end
 
-    score:draw(menu.state)
     cloud:draw()
     bird:draw()
     pipe:draw()
+    score:draw(menu.state)
 end

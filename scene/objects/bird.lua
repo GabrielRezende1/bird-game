@@ -20,7 +20,7 @@ function bird:init(world, x, y)
     self.frame = 1
     self.flapTimer = 0
     self.flapDuration = 0.15
-    self.wasSpaceDown = false
+    self.wasPressed = false
     self.maxTilt = math.rad(35)
     self.tilt = 0
     self.tiltSpeed = 6
@@ -29,8 +29,9 @@ end
 function bird:update(dt)
     local height = love.graphics.getHeight()
     local spaceDown = love.keyboard.isDown("space")
+    local m1 = love.mouse.isDown(1)
 
-    if spaceDown and not self.wasSpaceDown then
+    if (spaceDown or m1) and not self.wasPressed then
         self.frame = 2
         self.flapTimer = self.flapDuration
         self.body:setLinearVelocity(0, 0)
@@ -44,7 +45,7 @@ function bird:update(dt)
         end
     end
 
-    self.wasSpaceDown = spaceDown
+    self.wasPressed = spaceDown or m1
 
     local _, vy = self.body:getLinearVelocity()
     local targetTilt = 0

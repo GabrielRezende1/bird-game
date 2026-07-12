@@ -18,6 +18,17 @@ function menu:update(dt)
             love.event.quit()
         end
     end
+
+    if love.mouse.isDown(1) then
+        local mouseX, mouseY = love.mouse.getPosition()
+        if mouseX >= self.startButtonX and mouseX <= self.startButtonX + self.buttonWidth and
+            mouseY >= self.buttonY and mouseY <= self.buttonY + self.buttonHeight then
+            self.state = "play"
+        elseif mouseX >= self.quitButtonX and mouseX <= self.quitButtonX + self.buttonWidth and
+            mouseY >= self.buttonY + 70 and mouseY <= self.buttonY + 70 + self.buttonHeight then
+            love.event.quit()
+        end
+    end
 end
 
 function menu:draw()

@@ -25,7 +25,8 @@ function cloud:_spawnCloud()
     body:setLinearVelocity(-self.speed, 0)
 
     local shape = love.physics.newRectangleShape(32, 16)
-    love.physics.newFixture(body, shape, 1)
+    local fixture = love.physics.newFixture(body, shape, 1)
+    fixture:setSensor(true)
 
     table.insert(self.clouds, {
         body = body,

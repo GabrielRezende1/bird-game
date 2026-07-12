@@ -48,7 +48,7 @@ function pipe:_spawnPair()
     })
 end
 
-function pipe:update(dt)
+function pipe:update(dt, score)
     self.spawnTimer = self.spawnTimer + dt
     if self.spawnTimer >= self.spawnInterval then
         self:_spawnPair()
@@ -61,7 +61,7 @@ function pipe:update(dt)
         -- Bird X position is being hard coded
         if not pair.scored and x + self.pipeWidth < 25 then
             pair.scored = true
-            Score = Score + 1
+            score.score = score.score + 1
         end
 
         if x + self.pipeWidth < -20 then

@@ -16,6 +16,7 @@ function love.load()
     world = love.physics.newWorld(0, 2000, false)
     bird:init(world)
     pipe:init(world)
+    cloud:init(world)
     Score = 0
 end
 
@@ -23,7 +24,7 @@ function love.update(dt)
     world:update(dt)
     bird:update(dt)
     pipe:update(dt)
-    cloud.updateCloud()
+    cloud:update(dt)
 
     if collision:checkBirdPipeCollision(world, bird, pipe) then
         storage:saveScore(Score)
@@ -36,14 +37,13 @@ function love.draw()
     local height = love.graphics.getHeight()
 
     love.graphics.setBackgroundColor(0.5, 0.5, 1)
-    love.graphics.draw(cloud.cloud1, cloud.cloud1X, cloud.cloud1Y)
-    love.graphics.draw(cloud.cloud2, cloud.cloud2X, cloud.cloud2Y)
 
     love.graphics.setNewFont(48)
     love.graphics.print(Score, width / 2, height / 10)
     love.graphics.setNewFont(24)
     love.graphics.print("Best: " .. highscore, 0, 0)
 
+    cloud:draw()
     bird:draw()
     pipe:draw()
 end

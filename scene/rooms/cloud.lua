@@ -51,9 +51,11 @@ function cloud:update(dt)
 end
 
 function cloud:draw()
+    local scale = 2
+
     for _, cloud in ipairs(self.clouds) do
         local x, y = cloud.body:getPosition()
-        love.graphics.draw(self.sprite, self.quads[cloud.cloudType], x, y, 0, 1, 1, 0, 0)
+        love.graphics.draw(self.sprite, self.quads[cloud.cloudType], x, y, 0, scale, scale, 0, 0)
     end
 end
 

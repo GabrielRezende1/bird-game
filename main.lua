@@ -13,6 +13,7 @@ end
 local world = love.physics.newWorld(0, 2000, false)
 
 function love.load()
+    love.graphics.setDefaultFilter("nearest", "nearest")
     world = love.physics.newWorld(0, 2000, false)
     score:init()
     score:load(storage:loadScore())

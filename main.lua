@@ -1,10 +1,10 @@
-local storage = require('game.storage')
-local score = require('game.score')
-local cloud = require('scene.rooms.cloud')
 local bird = require('scene.objects.bird')
-local pipe = require('scene.objects.pipe')
+local cloud = require('scene.rooms.cloud')
 local collision = require('game.collision')
 local menu = require('game.menu')
+local pipe = require('scene.objects.pipe')
+local score = require('game.score')
+local storage = require('game.storage')
 
 if arg[2] == "debug" then
     require("lldebugger").start()

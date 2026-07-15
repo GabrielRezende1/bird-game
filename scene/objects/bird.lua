@@ -7,7 +7,7 @@ function bird:init(world, x, y)
 
     self.body = love.physics.newBody(world, self.x, self.y, "dynamic")
     self.scale = 2
-    self.shape = love.physics.newRectangleShape(16 * self.scale, 16 * self.scale)
+    self.shape = love.physics.newCircleShape(4 * self.scale)
     self.fixture = love.physics.newFixture(self.body, self.shape, 1)
 
     self.body:setFixedRotation(true)
@@ -36,7 +36,7 @@ function bird:update(dt)
         self.frame = 2
         self.flapTimer = self.flapDuration
         self.body:setLinearVelocity(0, 0)
-        self.body:applyLinearImpulse(0, -500)
+        self.body:applyLinearImpulse(0, -120)
     end
 
     if self.flapTimer > 0 then

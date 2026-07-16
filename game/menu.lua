@@ -34,7 +34,7 @@ end
 function menu:draw()
     love.graphics.setColor(1, 1, 0, 1)
     love.graphics.setNewFont(48)
-    love.graphics.print("Clap Bird", love.graphics.getWidth() / 2 - 140, 80)
+    love.graphics.print("Clap Bird", love.graphics.getWidth() / 2 - 110, 80)
 
     love.graphics.setNewFont(24)
     love.graphics.rectangle("fill", self.startButtonX, self.buttonY, self.buttonWidth, self.buttonHeight)

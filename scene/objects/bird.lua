@@ -58,17 +58,6 @@ function bird:update(dt)
     end
 
     self.tilt = self.tilt + (targetTilt - self.tilt) * math.min(dt * self.tiltSpeed, 1)
-
-    local x, y = self.body:getPosition()
-    if y + 16 > height then
-        self.body:setPosition(x, height / 2)
-        self.body:setLinearVelocity(0, 0)
-        love.load()
-    elseif y - 16 < 0 then
-        self.body:setPosition(x, height / 2)
-        self.body:setLinearVelocity(0, 0)
-        love.load()
-    end
 end
 
 function bird:draw()

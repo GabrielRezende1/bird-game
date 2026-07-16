@@ -17,7 +17,8 @@ function collision:_bodyHasFixture(body, targetFixture)
     return false
 end
 
-function collision:checkBirdPipeCollision(world, bird, pipe)
+function collision:checkBirdCollision(world, bird, pipe)
+    -- Check pipe collision
     for _, contact in ipairs(world:getContacts()) do
         local fixtureA, fixtureB = contact:getFixtures()
         if fixtureA and fixtureB then
@@ -34,6 +35,12 @@ function collision:checkBirdPipeCollision(world, bird, pipe)
                 end
             end
         end
+    end
+    -- Check border collision
+    local _, y = bird.body:getPosition()
+    local radius = bird.shape:getRadius()
+    if y + radius > love.graphics.getHeight() or y - radius < 0 then
+        return true
     end
 
     return false

@@ -34,7 +34,7 @@ function love.update(dt)
     pipe:update(dt, score)
     cloud:update(dt)
 
-    if collision:checkBirdPipeCollision(world, bird, pipe) then
+    if collision:checkBirdCollision(world, bird, pipe) then
         storage:saveScore(score.score)
         menu.state = "menu"
         love.load()

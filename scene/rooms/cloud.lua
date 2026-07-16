@@ -10,7 +10,8 @@ function cloud:init(world)
 
     self.clouds = {}
     self.spawnTimer = 0
-    self.spawnInterval = 2.5
+    self.spawnInterval = 5
+    self.firstSpawn = true
     self.speed = 40
 end
 
@@ -35,8 +36,15 @@ function cloud:_spawnCloud()
 end
 
 function cloud:update(dt)
+    -- Immediately spawn the first cloud
+    if self.firstSpawn then
+        self.firstSpawn = false
+        self:_spawnCloud()
+        self.spawnTimer = 0
+    end
+
     self.spawnTimer = self.spawnTimer + dt
-    if self.spawnTimer >= self.spawnInterval then
+    if self.spawnTimer >= self.spawnInterval and not self.firstSpawn then
         self:_spawnCloud()
         self.spawnTimer = 0
     end

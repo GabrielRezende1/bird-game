@@ -60,7 +60,7 @@ function pipe:update(dt, score)
         local pair = self.pairs[i]
         local x = pair.topBody:getX()
         -- Bird X position is being hard coded
-        if not pair.scored and x + self.pipeWidth < 25 then
+        if not pair.scored and x + self.pipeWidth < love.graphics.getWidth() / 3 then
             pair.scored = true
             score.score = score.score + 1
         end

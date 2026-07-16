@@ -2,7 +2,7 @@ local bird = {}
 
 function bird:init(world, x, y)
     self.sprite = love.graphics.newImage("assets/sprites/bird.png")
-    self.x = x or 25
+    self.x = x or love.graphics.getWidth() / 3
     self.y = y or love.graphics.getHeight() / 2
 
     self.body = love.physics.newBody(world, self.x, self.y, "dynamic")

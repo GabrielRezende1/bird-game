@@ -1,4 +1,5 @@
 local bird = {}
+local sound = require('game.sound')
 
 function bird:init(world, x, y)
     self.sprite = love.graphics.newImage("assets/sprites/bird.png")
@@ -37,6 +38,7 @@ function bird:update(dt)
         self.flapTimer = self.flapDuration
         self.body:setLinearVelocity(0, 0)
         self.body:applyLinearImpulse(0, -120)
+        sound:play('fly')
     end
 
     if self.flapTimer > 0 then

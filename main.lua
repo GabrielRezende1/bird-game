@@ -4,6 +4,7 @@ local collision = require('game.collision')
 local menu = require('game.menu')
 local pipe = require('scene.objects.pipe')
 local score = require('game.score')
+local sound = require('game.sound')
 local storage = require('game.storage')
 
 if arg[2] == "debug" then
@@ -15,6 +16,7 @@ local world = love.physics.newWorld(0, 2000, false)
 function love.load()
     love.graphics.setDefaultFilter("nearest", "nearest")
     world = love.physics.newWorld(0, 2000, false)
+    sound:init()
     score:init()
     score:load(storage:loadScore())
     bird:init(world)
@@ -35,6 +37,7 @@ function love.update(dt)
     cloud:update(dt)
 
     if collision:checkBirdCollision(world, bird, pipe) then
+        sound:play("hit")
         storage:saveScore(score.score)
         menu.state = "menu"
         love.load()

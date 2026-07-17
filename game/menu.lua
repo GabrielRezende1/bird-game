@@ -1,4 +1,5 @@
 local menu = {}
+local sound = require('game.sound')
 
 function menu:init()
     self.state = "menu"
@@ -14,9 +15,11 @@ end
 function menu:update(dt)
     if self.state == "menu" then
         if love.keyboard.isDown("space") or love.keyboard.isDown("return") then
+            sound:play('click')
             self.state = "play"
         end
         if love.keyboard.isDown("escape") then
+            sound:play('click')
             love.event.quit()
         end
     end
@@ -36,9 +39,11 @@ function menu:update(dt)
     if love.mouse.isDown(1) then
         if mouseX >= self.startButtonX and mouseX <= self.startButtonX + self.buttonWidth and
             mouseY >= self.buttonY and mouseY <= self.buttonY + self.buttonHeight then
+            sound:play('click')
             self.state = "play"
         elseif mouseX >= self.quitButtonX and mouseX <= self.quitButtonX + self.buttonWidth and
             mouseY >= self.buttonY + 70 and mouseY <= self.buttonY + 70 + self.buttonHeight then
+            sound:play('click')
             love.event.quit()
         end
     end

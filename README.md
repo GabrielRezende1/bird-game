@@ -1,4 +1,4 @@
-# :bird: FlyBird 
+# :bird: Flying Bird 
 
 A flappy bird rip-off game developed from scratch using [Lua](https://www.lua.org/about.html) with [Löve2D Framework](https://www.love2d.org/wiki/Main_Page).  
 

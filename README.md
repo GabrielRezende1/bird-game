@@ -1,8 +1,8 @@
-# :bird: FlyBird 
+# :bird: Flying Bird 
 
 A flappy bird rip-off game developed from scratch using [Lua](https://www.lua.org/about.html) with [Löve2D Framework](https://www.love2d.org/wiki/Main_Page).  
 
-For those unfamiliar, it is a simple game (first designed for mobile) where you fly a bird throughout gaps between pairs of pipes a score points for doing so. The objective of the game is to score as many points as you can.
+For those unfamiliar, it is a simple game where you fly a bird through gaps between pairs of pipes and score points for doing so. The objective of the game is to score as many points as you can.
 
 All 16x16 sprite assets were made by me in [Paint.NET](https://www.paint.net/). All sound assets were rightfully given by [Kenney](https://opengameart.org/users/kenney).
 

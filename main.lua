@@ -4,8 +4,8 @@ local collision = require('game.collision')
 local menu = require('game.menu')
 local pipe = require('scene.objects.pipe')
 local score = require('game.score')
-local sound = require('game.sound')
-local storage = require('game.storage')
+local sound = require('library.base.sound')
+local storage = require('library.base.storage')
 
 if arg[2] == "debug" then
     require("lldebugger").start()

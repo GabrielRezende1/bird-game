@@ -1,5 +1,5 @@
 local menu = {}
-local sound = require('game.sound')
+local sound = require('library.base.sound')
 
 function menu:init()
     self.state = "menu"

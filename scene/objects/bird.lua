@@ -1,5 +1,5 @@
 local bird = {}
-local sound = require('game.sound')
+local sound = require('library.base.sound')
 
 function bird:init(world, x, y)
     self.sprite = love.graphics.newImage("assets/sprites/bird.png")

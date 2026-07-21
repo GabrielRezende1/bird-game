@@ -10,6 +10,10 @@ All 16x16 sprite assets were made by me in [Paint.NET](https://www.paint.net/). 
 
 This project is a culmination of all my efforts to finish Harvard's Computer Science Introduction Course (2026). It was a great experience in general, and I sharpened my skills throughout the problem sets, finally opting for developing a game as my final project. And as per requested by them, there is also a [video showing the game](https://youtu.be/AdRZmBpxJ8A).
 
+## :seedling: Installation  
+
+Just download the zip folder from the [latest released version](https://github.com/GabrielRezende1/bird-game/releases/download/v1.0/birdgame.zip) (available as an executable).
+
 # :scroll: Project Structure  
 
 I wasn't sure how to structure the folders in my project, so I tried using the template from [kasshust](https://deepwiki.com/kasshust/kass-love2d-template/1.1-project-structure) for Löve2D projects, although not all the structure was used.  
